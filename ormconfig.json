@@ -4,7 +4,7 @@
   "port": 5432,
   "username": "postgres",
   "password": "",
-  "database": "nestjs",
+  "database": "ideas",
   "synchronize": true,
   "logging": true,
   "entities": ["src/**/*.entity.ts", "dist/**/*.entity.js"]
