@@ -47,11 +47,9 @@ export class ValidationPipe implements PipeTransform {
       .join(', ');
   }
 
-  private isEmpty(object: any) {
-    for (let property in object) {
-      if (object.hasOwnProperty(property)) {
-        return false;
-      }
+  private isEmpty(value: any) {
+    if (Object.keys(value).length > 0) {
+      return false;
     }
     return true;
   }
