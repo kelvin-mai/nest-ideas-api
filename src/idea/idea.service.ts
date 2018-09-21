@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { IdeaEntity } from './idea.entity';
@@ -16,7 +16,11 @@ export class IdeaService {
   }
 
   async read(id: string) {
-    return await this.ideaRepository.findOne({ where: { id } });
+    const idea = await this.ideaRepository.findOne({ where: { id } });
+    if (!idea) {
+      throw new HttpException('Not found', HttpStatus.NOT_FOUND);
+    }
+    return idea;
   }
 
   async create(data: IdeaDTO) {
@@ -31,7 +35,11 @@ export class IdeaService {
   }
 
   async destroy(id: string) {
-    await this.ideaRepository.delete({ id });
-    return { deleted: true };
+    const idea = await this.ideaRepository.findOne({ id });
+    if (!idea) {
+      throw new HttpException('Not found', HttpStatus.NOT_FOUND);
+    }
+    await this.ideaRepository.remove(idea);
+    return idea;
   }
 }
