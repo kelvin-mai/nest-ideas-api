@@ -30,8 +30,12 @@ export class IdeaService {
   }
 
   async update(id: string, data: Partial<IdeaDTO>) {
+    const idea = await this.ideaRepository.findOne({ id });
+    if (!idea) {
+      throw new HttpException('Not found', HttpStatus.NOT_FOUND);
+    }
     await this.ideaRepository.update({ id }, data);
-    return await this.ideaRepository.findOne({ id });
+    return idea;
   }
 
   async destroy(id: string) {
