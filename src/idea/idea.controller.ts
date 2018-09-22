@@ -8,15 +8,13 @@ import {
   Delete,
   Put,
   UsePipes,
-  HttpException,
-  HttpStatus,
 } from '@nestjs/common';
+
 import { IdeaService } from './idea.service';
 import { IdeaDTO } from './idea.dto';
 import { ValidationPipe } from '../shared/validation.pipe';
-import { IsNotEmpty } from 'class-validator';
 
-@Controller('idea')
+@Controller('api/ideas')
 export class IdeaController {
   private logger = new Logger('IdeaController');
 
