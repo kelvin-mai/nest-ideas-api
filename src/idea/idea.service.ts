@@ -4,7 +4,8 @@ import { Repository } from 'typeorm';
 
 import { IdeaEntity } from './idea.entity';
 import { IdeaDTO, IdeaRO } from './idea.dto';
-import { UserEntity } from 'user/user.entity';
+import { UserEntity } from '../user/user.entity';
+import { Votes } from '../shared/votes.enum';
 
 @Injectable()
 export class IdeaService {
@@ -33,6 +34,25 @@ export class IdeaService {
     if (idea.author.id !== userId) {
       throw new HttpException('Incorrect User', HttpStatus.UNAUTHORIZED);
     }
+  }
+
+  private async vote(idea: IdeaEntity, user: UserEntity, vote: Votes) {
+    const opposite = vote === Votes.UP ? Votes.DOWN : Votes.UP;
+    if (
+      idea[opposite].filter(voter => voter.id === user.id).length > 0 ||
+      idea[vote].filter(voter => voter.id === user.id).length > 0
+    ) {
+      idea[opposite] = idea[opposite].filter(voter => voter.id !== user.id);
+      idea[vote] = idea[vote].filter(voter => voter.id !== user.id);
+      await this.ideaRepository.save(idea);
+    } else if (idea[vote].filter(voter => voter.id === user.id).length < 1) {
+      idea[vote].push(user);
+      await this.ideaRepository.save(idea);
+    } else {
+      throw new HttpException('Unable to cast vote', HttpStatus.BAD_REQUEST);
+    }
+
+    return idea;
   }
 
   async showAll(): Promise<IdeaRO[]> {
@@ -94,43 +114,23 @@ export class IdeaService {
   }
 
   async upvote(id: string, userId: string) {
-    const idea = await this.ideaRepository.findOne({
+    let idea = await this.ideaRepository.findOne({
       where: { id },
       relations: ['author', 'upvotes', 'downvotes'],
     });
     const user = await this.userRepository.findOne({ where: { id: userId } });
-
-    if (idea.downvotes.filter(voter => voter.id === user.id).length > 0) {
-      idea.downvotes = idea.downvotes.filter(voter => voter.id !== user.id);
-      await this.ideaRepository.save(idea);
-    } else if (idea.upvotes.filter(voter => voter.id === user.id).length < 1) {
-      idea.upvotes.push(user);
-      await this.ideaRepository.save(idea);
-    } else {
-      throw new HttpException('Unable to upvote', HttpStatus.BAD_REQUEST);
-    }
+    idea = await this.vote(idea, user, Votes.UP);
 
     return this.ideaToResponseObject(idea);
   }
 
   async downvote(id: string, userId: string) {
-    const idea = await this.ideaRepository.findOne({
+    let idea = await this.ideaRepository.findOne({
       where: { id },
       relations: ['author', 'upvotes', 'downvotes'],
     });
     const user = await this.userRepository.findOne({ where: { id: userId } });
-
-    if (idea.upvotes.filter(voter => voter.id === user.id).length > 0) {
-      idea.upvotes = idea.upvotes.filter(voter => voter.id !== user.id);
-      await this.ideaRepository.save(idea);
-    } else if (
-      idea.downvotes.filter(voter => voter.id === user.id).length < 1
-    ) {
-      idea.downvotes.push(user);
-      await this.ideaRepository.save(idea);
-    } else {
-      throw new HttpException('Unable to downvote', HttpStatus.BAD_REQUEST);
-    }
+    idea = await this.vote(idea, user, Votes.DOWN);
 
     return this.ideaToResponseObject(idea);
   }
