@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
 
   async validateToken(auth: string) {
     if (auth.split(' ')[0] !== 'Bearer') {
-      throw new HttpException('Invalid token', HttpStatus.FORBIDDEN);
+      throw new HttpException('Invalid token', HttpStatus.UNAUTHORIZED);
     }
     const token = auth.split(' ')[1];
 
@@ -30,7 +30,7 @@ export class AuthGuard implements CanActivate {
       return decoded;
     } catch (err) {
       const message = 'Token error: ' + (err.message || err.name);
-      throw new HttpException(message, HttpStatus.FORBIDDEN);
+      throw new HttpException(message, HttpStatus.UNAUTHORIZED);
     }
   }
 }
