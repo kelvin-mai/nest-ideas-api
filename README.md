@@ -34,46 +34,23 @@
 $ npm install
 ```
 
-## Running the app
+## Ideas APP API
 
-```bash
-# development
-$ npm run start
+A reddit/twitter style app to keep track of posted App Ideas. This is the companion source code for the YouTube tutorial [Ideas App - NestJS API](https://www.youtube.com/watch?v=NF9Xn4g5MJY&list=PLBeQxJQNprbiJm55q7nTAfhMmzIC8MWxc) series.
 
-# watch mode
-$ npm run start:dev
+### User Stories - Project Timeline
 
-# incremental rebuild (webpack)
-$ npm run webpack
-$ npm run start:hmr
+- x Authenticate users
+- x Users can CRUD ideas
+- x Users can upvote/downvote ideas
+- x Users can bookmark ideas
+- Users can comment on ideas
+- Ideas can be seen in realtime
 
-# production mode
-$ npm run start:prod
-```
+### Stack
 
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-  Nest is [MIT licensed](LICENSE).
+- Database - PostgreSQL
+- REST API - NestJS
+- GraphQL API - NestJS
+- Rest Frontend - Angular with NGRX
+- GraphQL Frontend - React (Native?) with Apollo Client
