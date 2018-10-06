@@ -20,7 +20,7 @@ export class CommentService {
 
   async showByIdea(ideaId: string) {
     const idea = await this.ideaRepository.findOne({
-      where: { ideaId },
+      where: { id: ideaId },
       relations: ['comments', 'comments.author', 'comments.idea'],
     });
 
