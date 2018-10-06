@@ -31,7 +31,7 @@ export class UserEntity {
   @Column('text')
   password: string;
 
-  @OneToMany(type => IdeaEntity, idea => idea.author)
+  @OneToMany(type => IdeaEntity, idea => idea.author, { cascade: true })
   ideas: IdeaEntity[];
 
   @ManyToMany(type => IdeaEntity, { cascade: true })

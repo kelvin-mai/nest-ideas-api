@@ -4,7 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { IdeaController } from './idea.controller';
 import { IdeaEntity } from './idea.entity';
 import { IdeaService } from './idea.service';
-import { UserEntity } from 'user/user.entity';
+import { UserEntity } from '../user/user.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([IdeaEntity, UserEntity])],
