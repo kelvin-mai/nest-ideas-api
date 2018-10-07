@@ -10,11 +10,11 @@ import {
   UsePipes,
 } from '@nestjs/common';
 
-import { CommentService } from './comment.service';
-import { AuthGuard } from '../shared/auth.gaurd';
 import { User } from '../user/user.decorator';
+import { AuthGuard } from '../shared/auth.gaurd';
 import { ValidationPipe } from '../shared/validation.pipe';
 import { CommentDTO } from './comment.dto';
+import { CommentService } from './comment.service';
 
 @Controller('api/comments')
 export class CommentController {

@@ -14,8 +14,8 @@ import {
 import { IdeaService } from './idea.service';
 import { IdeaDTO } from './idea.dto';
 import { ValidationPipe } from '../shared/validation.pipe';
-import { AuthGuard } from 'shared/auth.gaurd';
-import { User } from 'user/user.decorator';
+import { AuthGuard } from '../shared/auth.gaurd';
+import { User } from '../user/user.decorator';
 
 @Controller('api/ideas')
 export class IdeaController {
