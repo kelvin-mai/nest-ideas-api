@@ -8,6 +8,7 @@ import {
   Post,
   Body,
   UsePipes,
+  Query,
 } from '@nestjs/common';
 
 import { User } from '../user/user.decorator';
@@ -22,8 +23,8 @@ export class CommentController {
   constructor(private commentService: CommentService) {}
 
   @Get('idea/:id')
-  showCommentsByIdea(@Param('id') idea: string) {
-    return this.commentService.showByIdea(idea);
+  showCommentsByIdea(@Param('id') idea: string, @Query('page') page: number) {
+    return this.commentService.showByIdea(idea, page);
   }
 
   @Post('idea/:id')
@@ -38,8 +39,8 @@ export class CommentController {
   }
 
   @Get('user/:id')
-  showCommentsByUser(@Param('id') user: string) {
-    return this.commentService.showByUser(user);
+  showCommentsByUser(@Param('id') user: string, @Query('page') page: number) {
+    return this.commentService.showByUser(user, page);
   }
 
   @Get(':id')
