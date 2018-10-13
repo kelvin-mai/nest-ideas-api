@@ -20,6 +20,7 @@
     "@nestjs/common": "^5.1.0",
     "@nestjs/core": "^5.1.0",
     "@nestjs/typeorm": "^5.2.1",
+    "@nestjs/websockets": "^5.3.11",
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.1.9",
     "class-validator": "^0.9.1",
