@@ -1,8 +1,12 @@
-type Query {
-  users: [User!]
+type User {
+  id: ID!
+  username: String!
+  created: String!
+  ideas: [Idea]
+  bookmarks: [Idea]
+  comments: [Comment]
 }
 
-type User {
-  id: String!
-  username: String!
+type Query {
+  users(page: Int): [User!]
 }
