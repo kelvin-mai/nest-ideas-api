@@ -7,12 +7,12 @@ import {
   Mutation,
   Context,
 } from '@nestjs/graphql';
-
-import { IdeaService } from './idea.service';
-import { CommentService } from 'comment/comment.service';
-import { IdeaDTO } from './idea.dto';
-import { AuthGuard } from 'shared/auth.gaurd';
 import { UseGuards } from '@nestjs/common';
+
+import { CommentService } from '../comment/comment.service';
+import { AuthGuard } from '../shared/auth.gaurd';
+import { IdeaService } from './idea.service';
+import { IdeaDTO } from './idea.dto';
 
 @Resolver('Idea')
 export class IdeaResolver {

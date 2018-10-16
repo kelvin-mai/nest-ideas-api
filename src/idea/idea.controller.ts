@@ -12,11 +12,11 @@ import {
   Query,
 } from '@nestjs/common';
 
-import { IdeaService } from './idea.service';
-import { IdeaDTO } from './idea.dto';
+import { User } from '../user/user.decorator';
 import { ValidationPipe } from '../shared/validation.pipe';
 import { AuthGuard } from '../shared/auth.gaurd';
-import { User } from '../user/user.decorator';
+import { IdeaService } from './idea.service';
+import { IdeaDTO } from './idea.dto';
 
 @Controller('api/ideas')
 export class IdeaController {

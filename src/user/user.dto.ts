@@ -1,4 +1,5 @@
 import { IsNotEmpty } from 'class-validator';
+
 import { IdeaEntity } from '../idea/idea.entity';
 
 export class UserDTO {

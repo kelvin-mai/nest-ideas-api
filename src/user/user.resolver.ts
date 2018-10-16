@@ -7,13 +7,12 @@ import {
   Mutation,
   Context,
 } from '@nestjs/graphql';
-
-import { UserService } from './user.service';
-import { CommentService } from 'comment/comment.service';
-import { UserDTO } from './user.dto';
-import { useContainer } from 'typeorm';
 import { UseGuards } from '@nestjs/common';
-import { AuthGuard } from 'shared/auth.gaurd';
+
+import { AuthGuard } from '../shared/auth.gaurd';
+import { CommentService } from '../comment/comment.service';
+import { UserService } from './user.service';
+import { UserDTO } from './user.dto';
 
 @Resolver()
 export class UserResolver {
