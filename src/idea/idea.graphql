@@ -1,13 +1,13 @@
 type Idea {
   id: ID
-  created: String
-  updated: String
+  created: Date!
+  updated: Date!
   idea: String!
   description: String!
   author: User!
   upvotes: Int!
   downvotes: Int!
-  comments: [Comment]
+  comments: [Comment!]!
 }
 
 type Query {

@@ -1,10 +1,10 @@
 type User {
   id: ID!
   username: String!
-  created: String!
-  ideas: [Idea]
-  bookmarks: [Idea]
-  comments: [Comment]
+  created: Date!
+  ideas: [Idea!]!
+  bookmarks: [Idea!]!
+  comments: [Comment!]
 }
 
 type Auth {
