@@ -10,7 +10,7 @@ export class CommentResolver {
 
   @Query()
   async comment(@Args('id') id: string) {
-    await this.commentService.show(id);
+    return await this.commentService.show(id);
   }
 
   @Mutation()
@@ -22,13 +22,13 @@ export class CommentResolver {
   ) {
     const { id: userId } = user;
     const data = { comment };
-    await this.commentService.create(ideaId, userId, data);
+    return await this.commentService.create(ideaId, userId, data);
   }
 
   @Mutation()
   @UseGuards(new AuthGuard())
   async deleteComment(@Args('id') id: string, @Context('user') user) {
     const { id: userId } = user;
-    await this.commentService.destroy(id, userId);
+    return await this.commentService.destroy(id, userId);
   }
 }
