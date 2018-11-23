@@ -26,7 +26,7 @@ export class UserService {
       where: { username },
       relations: ['ideas', 'bookmarks'],
     });
-    return user.toResponseObject();
+    return user.toResponseObject(false);
   }
 
   async login(data: UserDTO) {
