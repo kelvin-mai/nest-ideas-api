@@ -90,16 +90,19 @@ export class IdeaService {
     userId: string,
     data: Partial<IdeaDTO>,
   ): Promise<IdeaRO> {
-    const idea = await this.ideaRepository.findOne({
+    let idea = await this.ideaRepository.findOne({
       where: { id },
       relations: ['author', 'upvotes', 'downvotes', 'comments'],
     });
-    console.log('idea', idea);
     if (!idea) {
       throw new HttpException('Not found', HttpStatus.NOT_FOUND);
     }
     this.ensureOwnership(idea, userId);
     await this.ideaRepository.update({ id }, data);
+    idea = await this.ideaRepository.findOne({
+      where: { id },
+      relations: ['author', 'upvotes', 'downvotes', 'comments'],
+    });
     return this.ideaToResponseObject(idea);
   }
 
