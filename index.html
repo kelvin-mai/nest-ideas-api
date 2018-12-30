@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul id="app"></ul>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script>
+      const socket = io('http://localhost:4001');
+
+      socket.emit('client', { name: 'Nest' }, data => console.log(data));
+      socket.on('newIdea', data => {
+        console.log(data);
+        document.getElementById('app').innerHTML += `
+          <li>
+            <div>
+              <h2>${data.idea}</h2>
+              <p>${data.description}</p>
+            </div>
+          </li>
+        `;
+      });
+    </script>
+  </body>
+</html>
