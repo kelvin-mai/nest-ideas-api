@@ -2,19 +2,23 @@ import { Logger } from '@nestjs/common';
 import {
   WebSocketGateway,
   WebSocketServer,
-  SubscribeMessage,
+  OnGatewayConnection,
+  OnGatewayDisconnect,
 } from '@nestjs/websockets';
 
 @WebSocketGateway(4001, { transport: ['websocket'] })
-export class AppGateway {
+export class AppGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer()
   wss;
 
   private logger = new Logger('AppGateway');
 
-  @SubscribeMessage('client')
-  onEvent(client, data: string): string {
-    this.logger.log('New client connected' + client);
-    return 'Successfully connected to server' + data;
+  handleConnection(client) {
+    this.logger.log('New client connected');
+    client.emit('connection', 'Successfully connected to server');
+  }
+
+  handleDisconnect(client) {
+    this.logger.log('Client disconnected');
   }
 }

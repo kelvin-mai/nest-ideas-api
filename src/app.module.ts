@@ -17,6 +17,6 @@ import { DateScalar } from 'shared/date.scalar';
     ApiModule,
   ],
   controllers: [AppController],
-  providers: [AppGateway, DateScalar],
+  providers: [DateScalar],
 })
 export class AppModule {}
