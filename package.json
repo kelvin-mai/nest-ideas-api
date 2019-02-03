@@ -4,6 +4,9 @@
   "description": "description",
   "author": "Kelvin Mai",
   "license": "MIT",
+  "engines": {
+    "node": "~10"
+  },
   "scripts": {
     "start": "ts-node -r tsconfig-paths/register src/main.ts",
     "start:dev": "nodemon",

@@ -39,7 +39,7 @@ A reddit/twitter style app to keep track of posted App Ideas. This is the compan
 - x Users can upvote/downvote ideas
 - x Users can bookmark ideas
 - x Users can comment on ideas
-- Ideas can be seen in realtime
+- x Ideas can be seen in realtime
 
 ### Stack
 
