@@ -27,7 +27,7 @@
     "@nestjs/websockets": "^5.3.11",
     "apollo-server-express": "^2.14.2",
     "bcryptjs": "^2.4.3",
-    "class-transformer": "^0.1.9",
+    "class-transformer": "^0.3.1",
     "class-validator": "^0.9.1",
     "dotenv": "^6.1.0",
     "graphql": "^14.0.2",
