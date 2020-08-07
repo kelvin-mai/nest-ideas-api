@@ -1715,10 +1715,10 @@ cipher-base@^1.0.0, cipher-base@^1.0.1, cipher-base@^1.0.3:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
 
-class-transformer@^0.1.9:
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/class-transformer/-/class-transformer-0.1.9.tgz#29977c528233ca014e6fd9523327ebd31d11ca54"
-  integrity sha512-KV0IteiRl95OZ9UzbuPj8RhckuHA4JTC+Q+ZbKTYPsmvB0GgPRG7JBEXiVhBq/U050OVRku4N5t0rSMHw8vDWw==
+class-transformer@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/class-transformer/-/class-transformer-0.3.1.tgz#ee681a5439ff2230fc57f5056412d3befa70d597"
+  integrity sha512-cKFwohpJbuMovS8xVLmn8N2AUbAuc8pVo4zEfsUVo8qgECOogns1WVk/FkOZoxhOPTyTYFckuoH+13FO+MQ8GA==
 
 class-utils@^0.3.5:
   version "0.3.6"
